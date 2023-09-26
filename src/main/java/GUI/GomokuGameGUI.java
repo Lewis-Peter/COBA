@@ -1,9 +1,11 @@
 package GUI;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.io.File;
+
+
+import GameCtl.CodeUploadHandler;
+import GameCtl.resetGame;
 
 public class GomokuGameGUI extends JFrame {
     private JPanel boardPanel; // 棋盘面板
@@ -25,23 +27,30 @@ public class GomokuGameGUI extends JFrame {
         setIconImage(icon.getImage());
     }
 
-    private void createMenuBar() { //菜单栏
+    private void createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
         JMenu fileMenu = new JMenu("文件");
         menuBar.add(fileMenu);
 
-        JMenuItem uploadCodeMenuItem = new JMenuItem("上传用户代码");
-        fileMenu.add(uploadCodeMenuItem);
-        uploadCodeMenuItem.addActionListener(e -> handleUploadCode());
+        JMenuItem uploadCodeSubMenu = new JMenuItem("上传用户代码");
+        fileMenu.add(uploadCodeSubMenu);
+        uploadCodeSubMenu.addActionListener(e -> CodeUploadHandler.handleUploadCode());
+
+        JMenuItem resetGameMenuItem = new JMenuItem("重置游戏");
+        fileMenu.add(resetGameMenuItem);
+        resetGameMenuItem.addActionListener(e -> new resetGame());
 
         JMenu exitMenu = new JMenu("退出");
         menuBar.add(exitMenu);
+
         JMenuItem exitMenuItem = new JMenuItem("退出");
         exitMenu.add(exitMenuItem);
         exitMenuItem.addActionListener(e -> System.exit(0));
     }
+
+
 
     private void createBoardPanel() {
         boardPanel = new JPanel() {
@@ -57,30 +66,6 @@ public class GomokuGameGUI extends JFrame {
         Container contentPane = getContentPane();
         contentPane.setLayout(new BorderLayout());
         contentPane.add(boardPanel, BorderLayout.CENTER);
-    }
-
-    private void handleUploadCode() {
-        JFileChooser fileChooser = new JFileChooser();
-        // 创建文件过滤器，只接受.java文件
-        FileFilter javaFileFilter = new FileFilter() {
-            @Override
-            public boolean accept(File file) {
-                return file.isDirectory() || file.getName().toLowerCase().endsWith(".java");
-            }
-
-            @Override
-            public String getDescription() {
-                return "Java文件 (*.java)";
-            }
-        };
-        fileChooser.setFileFilter(javaFileFilter);
-
-        int returnValue = fileChooser.showOpenDialog(null);
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            String selectedFilePath = fileChooser.getSelectedFile().getAbsolutePath();
-            // 处理代码上传和集成逻辑
-            // 提示用户上传成功或失败
-        }
     }
 
     public static void main(String[] args) {
