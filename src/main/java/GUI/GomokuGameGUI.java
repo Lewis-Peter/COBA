@@ -3,8 +3,6 @@ package GUI;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 public class GomokuGameGUI extends JFrame {
@@ -21,6 +19,10 @@ public class GomokuGameGUI extends JFrame {
         setSize(400, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // 加载图标并设置为窗口图标
+        ImageIcon icon = new ImageIcon("src/asset/favicon/favicon.png");
+        setIconImage(icon.getImage());
     }
 
     private void createMenuBar() { //菜单栏
