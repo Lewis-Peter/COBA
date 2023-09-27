@@ -21,7 +21,6 @@ public class CodeUploadHandler {
             }
         };
         fileChooser.setFileFilter(javaFileFilter);
-
         int returnValue = fileChooser.showOpenDialog(null);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             String selectedFilePath = fileChooser.getSelectedFile().getAbsolutePath();
