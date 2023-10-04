@@ -23,7 +23,7 @@ public class GomokuGameGUI extends JFrame {
 
     private void initializeUI() {
         setTitle("五子棋游戏");
-        setSize(400, 400);
+        setSize(600, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -42,7 +42,7 @@ public class GomokuGameGUI extends JFrame {
                 super.paintComponent(g);
 
                 int boardSize = 15; // 棋盘大小，这里假设是15x15
-                int cellSize = 20; // 每个格子的大小
+                int cellSize = 25; // 每个格子的大小
 
                 // 绘制棋盘
                 for (int row = 0; row < boardSize; row++) {
@@ -59,7 +59,7 @@ public class GomokuGameGUI extends JFrame {
                             g.setColor(Color.RED);
                             g.fillOval(x, y, cellSize, cellSize);
                         } else if (board[row][col] == 2) {
-                            g.setColor(Color.BLUE);
+                            g.setColor(Color.BLACK);
                             g.fillOval(x, y, cellSize, cellSize);
                         }
                     }
@@ -183,7 +183,7 @@ public class GomokuGameGUI extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            GomokuGameGUI gameGUI = new GomokuGameGUI();
+            GomokuGameGUITEST gameGUI = new GomokuGameGUITEST();
             gameGUI.setVisible(true);
         });
     }
